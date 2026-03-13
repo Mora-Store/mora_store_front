@@ -1,0 +1,177 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+/* ── Tailwind v4: use .dark class instead of @media prefers-color-scheme ── */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── Design Tokens ──────────────────────────────────── */
+@theme {
+  --color-primary: #F5F5DC;
+  --color-primary-light: #FCFCF0;
+  --color-primary-dark: #EAEAC8;
+  --color-accent: #111827;
+  --color-surface: #FFFFFF;
+  --color-muted: #6B7280;
+  --color-border: #E5E5CB;
+
+  /* Dark mode */
+  --color-bg-dark: #121212;
+  --color-surface-dark: #1A1A1A;
+  --color-primary-dm: #F5F5DC;
+  --color-text-dm: #FFFFFF;
+
+  /* Fonts */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'DM Mono', monospace;
+}
+
+/* ── Base Styles ────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-body);
+  scroll-behavior: smooth;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  background-color: var(--color-surface);
+  color: var(--color-accent);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Dark Mode ──────────────────────────────────────── */
+html.dark body {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-dm);
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+/* ── Product Card Hover ─────────────────────────────── */
+.product-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px -4px rgba(245, 245, 220, 0.4);
+}
+
+/* ── WhatsApp Button Pulse ──────────────────────────── */
+@keyframes wa-pulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px rgba(37, 211, 102, 0);
+  }
+}
+
+.wa-pulse {
+  animation: wa-pulse 2s infinite;
+}
+
+/* ── Skeleton Shimmer ───────────────────────────────── */
+@keyframes shimmer {
+  from {
+    background-position: -400px 0;
+  }
+
+  to {
+    background-position: 400px 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #E5E5CB 25%, #F5F5DC 50%, #E5E5CB 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite linear;
+  border-radius: 8px;
+}
+
+html.dark .skeleton {
+  background: linear-gradient(90deg, #1A1A1A 25%, #2A2A2A 50%, #1A1A1A 75%);
+  background-size: 800px 100%;
+}
+
+/* ── Scrollbar ──────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: #2A2A2A;
+}
+
+/* ── Utility classes ────────────────────────────────── */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* ── Hero Blob Animation ────────────────────────────── */
+@keyframes blob {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+.animate-blob {
+  animation: blob 7s infinite alternate ease-in-out;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* ── Shine Text Animation ───────────────────────────── */
+@keyframes shine {
+  0% { background-position: 200% center; }
+  15% { background-position: -200% center; }
+  100% { background-position: -200% center; }
+}
+
+.animate-shine {
+  animation: shine 12s linear infinite;
+}
+
+@keyframes shine-fast {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+.animate-shine-fast {
+  animation: shine-fast 1.5s ease-in-out;
+}

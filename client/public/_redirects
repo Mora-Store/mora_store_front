@@ -1,0 +1,5 @@
+# Proxy API requests to Render
+/api/*  https://REEMPLAZAR-CON-URL-DE-RENDER.onrender.com/api/:splat  200
+
+# Fallback to index.html for React Router
+/*      /index.html                                            200
