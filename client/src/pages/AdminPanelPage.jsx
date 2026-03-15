@@ -432,7 +432,7 @@ const ProductForm = ({ product, categories, onSaved, onCancel }) => {
                         {currentImages.map((img, index) => (
                             <div key={img} className={`relative group w-16 h-16 rounded-xl overflow-hidden bg-neutral-100 dark:bg-neutral-800 border-2 transition-all ${index === 0 ? 'border-neutral-900 dark:border-[#F5F5DC]' : 'border-transparent'}`}>
                                 <img src={getImageUrl(img)} alt="" className="w-full h-full object-cover" />
-                                <div className="absolute inset-0 bg-black/50 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <div className="absolute inset-0 bg-black/50 flex items-center justify-center gap-2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity">
                                     {index !== 0 && (
                                         <button
                                             type="button"
