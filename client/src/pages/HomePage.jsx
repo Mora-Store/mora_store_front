@@ -97,7 +97,7 @@ const FeaturedCarousel = ({ products, waNumber }) => {
                 {/* Cards viewport — overflow hidden clips the slide */}
                 <div className="overflow-hidden flex-1 w-full">
                     <div
-                        className={`grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3
+                        className={`grid gap-2 sm:gap-3 lg:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3
                             transition-all duration-[380ms] ease-in-out ${exitClass}`}
                     >
                         {getCards(displayed).map((p, i) => {
@@ -125,37 +125,37 @@ const FeaturedCarousel = ({ products, waNumber }) => {
                                             </div>
                                         )}
                                         {/* Featured badge */}
-                                        <span className="absolute top-3 left-3 inline-flex items-center gap-1 px-2.5 py-1
-                                            bg-[#F5F5DC] text-neutral-900 dark:text-neutral-900 text-xs font-medium rounded-full shadow-sm">
-                                            <Star size={10} fill="currentColor" /> Destacado
+                                        <span className="absolute top-2 left-2 sm:top-3 sm:left-3 inline-flex items-center gap-0.5 sm:gap-1 px-2 sm:px-2.5 py-0.5 sm:py-1
+                                            bg-[#F5F5DC] text-neutral-900 dark:text-neutral-900 text-[10px] sm:text-xs font-medium rounded-full shadow-sm">
+                                            <Star size={8} sm:size={10} fill="currentColor" /> Destacado
                                         </span>
                                         {/* Discount badge */}
                                         {disc > 0 && (
-                                            <span className="absolute top-3 right-3 inline-flex items-center px-2.5 py-1
-                                                bg-red-500 text-white text-xs font-bold rounded-full shadow-sm">
+                                            <span className="absolute top-2 right-2 sm:top-3 sm:right-3 inline-flex items-center px-1.5 sm:px-2.5 py-0.5 sm:py-1
+                                                bg-red-500 text-white text-[10px] sm:text-xs font-bold rounded-full shadow-sm">
                                                 −{disc}%
                                             </span>
                                         )}
                                     </Link>
 
                                     {/* Info */}
-                                    <div className="p-4 flex flex-col gap-2 flex-1">
-                                        <p className="text-xs text-neutral-500">{p.category?.name}{p.subcategory && ` · ${p.subcategory}`}</p>
+                                    <div className="p-3 sm:p-4 flex flex-col gap-1.5 sm:gap-2 flex-1">
+                                        <p className="text-[10px] sm:text-xs text-neutral-500">{p.category?.name}{p.subcategory && ` · ${p.subcategory}`}</p>
                                         <Link to={`/producto/${p._id}`}>
-                                            <h3 className="font-semibold text-neutral-900 dark:text-neutral-100 line-clamp-2 hover:text-neutral-900 dark:hover:text-[#F5F5DC] transition-colors">
+                                            <h3 className="font-semibold text-sm sm:text-base text-neutral-900 dark:text-neutral-100 line-clamp-2 hover:text-neutral-900 dark:hover:text-[#F5F5DC] transition-colors">
                                                 {p.name}
                                             </h3>
                                         </Link>
                                         <div className="mt-auto">
-                                            <div className="flex items-baseline gap-2">
-                                                <span className="font-mono font-bold text-neutral-900 dark:text-[#F5F5DC] text-lg">{formatPrice(finalP, currency)}</span>
-                                                {disc > 0 && <span className="font-mono text-sm text-neutral-500 line-through">{formatPrice(p.price, currency)}</span>}
+                                            <div className="flex items-baseline gap-1.5 sm:gap-2 flex-wrap">
+                                                <span className="font-mono font-bold text-neutral-900 dark:text-[#F5F5DC] text-base sm:text-lg">{formatPrice(finalP, currency)}</span>
+                                                {disc > 0 && <span className="font-mono text-xs sm:text-sm text-neutral-500 line-through">{formatPrice(p.price, currency)}</span>}
                                             </div>
                                         </div>
                                         <a href={waLink} target="_blank" rel="noopener noreferrer"
-                                            className="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1aab52]
-                                                text-white text-sm font-medium py-2.5 rounded-xl transition-colors mt-2">
-                                            <MessageCircle size={15} /> Cotizar
+                                            className="flex items-center justify-center gap-1.5 sm:gap-2 bg-[#25D366] hover:bg-[#1aab52]
+                                                text-white text-xs sm:text-sm font-medium py-2 sm:py-2.5 rounded-xl transition-colors mt-2">
+                                            <MessageCircle size={13} className="sm:hidden" /><MessageCircle size={15} className="hidden sm:block" /> Cotizar
                                         </a>
                                     </div>
                                 </div>
