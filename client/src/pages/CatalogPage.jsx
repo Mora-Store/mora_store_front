@@ -103,31 +103,55 @@ const CatalogPage = () => {
             </header>
 
             <div className="max-w-7xl mx-auto px-4 py-8">
-                {/* Mobile search */}
-                <div className="relative md:hidden mb-4">
-                    <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500" />
-                    <input
-                        type="text"
-                        placeholder="Buscar productos..."
-                        value={filters.search}
-                        onChange={e => updateFilter('search', e.target.value)}
-                        className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-neutral-200 dark:border-neutral-800
+                {/* Mobile search + filter bar */}
+                <div className="md:hidden flex gap-2 mb-6">
+                    <div className="relative flex-1">
+                        <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500" />
+                        <input
+                            type="text"
+                            placeholder="Buscar..."
+                            value={filters.search}
+                            onChange={e => updateFilter('search', e.target.value)}
+                            className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-neutral-200 dark:border-neutral-800
               bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100
               placeholder-[#9E8B7D] focus:outline-none focus:ring-2 focus:ring-neutral-900 dark:focus:ring-[#F5F5DC] text-sm"
-                    />
-                </div>
-
-                <div className="flex gap-8">
-                    {/* Sidebar filter */}
+                        />
+                    </div>
                     <FilterBar
                         categories={categories}
                         filters={filters}
                         onFilterChange={updateFilter}
                         onReset={resetFilters}
                     />
+                </div>
+
+                <div className="flex gap-8">
+                    {/* Sidebar filter — desktop only */}
+                    <div className="hidden md:block">
+                        <FilterBar
+                            categories={categories}
+                            filters={filters}
+                            onFilterChange={updateFilter}
+                            onReset={resetFilters}
+                        />
+                    </div>
 
                     {/* Product grid */}
                     <main className="flex-1 min-w-0">
+                        {/* Desktop search */}
+                        <div className="relative hidden md:flex mb-6">
+                            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500" />
+                            <input
+                                type="text"
+                                placeholder="Buscar productos..."
+                                value={filters.search}
+                                onChange={e => updateFilter('search', e.target.value)}
+                                className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-neutral-200 dark:border-neutral-800
+                  bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100
+                  placeholder-[#9E8B7D] focus:outline-none focus:ring-2 focus:ring-neutral-900 dark:focus:ring-[#F5F5DC] text-sm"
+                            />
+                        </div>
+                        
                         <div className="flex items-center justify-between mb-6">
                             <div>
                                 <h1 className="font-display text-2xl font-bold text-neutral-900 dark:text-neutral-100">
@@ -148,7 +172,7 @@ const CatalogPage = () => {
                         ) : products.length === 0 ? (
                             <EmptyState hasFilters={hasFilters} onReset={resetFilters} />
                         ) : (
-                            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
+                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
                                 {products.map(p => (
                                     <ProductCard key={p._id} product={p} whatsappNumber={waNumber} />
                                 ))}
