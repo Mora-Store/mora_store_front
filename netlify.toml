@@ -5,3 +5,4 @@
 
 [context.production.environment]
   NODE_VERSION = "18"
+  VITE_API_URL = "https://mora-store-back.onrender.com/api"
